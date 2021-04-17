@@ -2,6 +2,10 @@
  * File: MyConstants.java
  * Course materials (20W) CST 8277
  * @author Mike Norman
+ * @author Thomas Curtis
+ * @author Zachary Holmes
+ * @author Denis Heldens
+ * @author Nathan Cartier
  *
  */
 package bloodbank.utility;
@@ -20,6 +24,10 @@ public List<Project> getProjects({@literal @}PathParam("<b><u>emailId</u></b>") 
  *
  * @author Shariar (Shawn) Emami
  * @author mwnorman (original)
+ * @author Thomas Curtis
+ * @author Zachary Holmes
+ * @author Denis Heldens
+ * @author Nathan Cartier
  */
 public interface MyConstants {
 
