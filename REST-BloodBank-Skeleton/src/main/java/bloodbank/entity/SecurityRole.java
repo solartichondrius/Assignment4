@@ -4,6 +4,10 @@
  *
  * @author Shariar (Shawn) Emami
  * @author (original) Mike Norman
+ * @author Thomas Curtis
+ * @author Zachary Holmes
+ * @author Denis Heldens
+ * @author Nathan Cartier
  * 
  * update by : I. Am. A. Student 040nnnnnnn
  *

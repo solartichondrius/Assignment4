@@ -6,6 +6,11 @@
  *
  * @author (original) Mike Norman
  * @date 2020 04
+ * 
+ * @author Thomas Curtis
+ * @author Zachary Holmes
+ * @author Denis Heldens
+ * @author Nathan Cartier
  */
 package bloodbank.entity;
 
