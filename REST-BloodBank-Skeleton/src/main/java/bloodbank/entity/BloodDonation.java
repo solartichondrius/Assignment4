@@ -1,6 +1,7 @@
 package bloodbank.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.AttributeOverride;
@@ -30,7 +31,7 @@ public class BloodDonation extends PojoBase implements Serializable {
 
 	@ManyToOne( optional = false, cascade = { CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
 	@JoinColumn( name = "bank_id", referencedColumnName = "bank_id")
-	private BloodBank bank;
+	private List<BloodBank> bank;
 
 	@OneToOne( fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.REFRESH}, optional = true, mappedBy = "donation")
 //	@JoinColumn( name = "donation_id", referencedColumnName = "donation_id", nullable = true, insertable = false, updatable = false)
@@ -43,11 +44,11 @@ public class BloodDonation extends PojoBase implements Serializable {
 	@Embedded
 	private BloodType bloodType;
 
-	public BloodBank getBank() {
+	public List<BloodBank> getBank() {
 		return bank;
 	}
 
-	public void setBank( BloodBank bank) {
+	public void setBank( List<BloodBank> bank) {
 		this.bank = bank;
 	}
 
@@ -78,7 +79,7 @@ public class BloodDonation extends PojoBase implements Serializable {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		return prime + Objects.hash( getBank().getId(), getBloodType(), getMilliliters());
+		return prime + Objects.hash( ((PojoBase) getBank()).getId(), getBloodType(), getMilliliters());
 	}
 
 	@Override
@@ -90,7 +91,7 @@ public class BloodDonation extends PojoBase implements Serializable {
 		if ( !( getClass() == obj.getClass() || Hibernate.getClass( obj) == getClass()))
 			return false;
 		BloodDonation other = (BloodDonation) obj;
-		return Objects.equals( getBank().getId(), other.getBank().getId())
+		return Objects.equals( ((PojoBase) getBank()).getId(), ((PojoBase) other.getBank()).getId())
 				&& Objects.equals( getBloodType(), other.getBloodType()) && getMilliliters() == other.getMilliliters();
 	}
 }
