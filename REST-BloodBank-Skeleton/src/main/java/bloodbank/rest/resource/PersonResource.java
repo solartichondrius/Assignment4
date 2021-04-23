@@ -39,7 +39,6 @@ import bloodbank.ejb.BloodBankService;
 import bloodbank.entity.Address;
 import bloodbank.entity.Person;
 import bloodbank.entity.SecurityUser;
-import bloodbank.security.customerServiceBean;
 
 @Path( PERSON_RESOURCE_NAME)
 @Consumes( MediaType.APPLICATION_JSON)
@@ -64,10 +63,29 @@ public class PersonResource {
 	}
 
 	@GET
-	@Path("{id}")
-	public Response getPersonById( @PathParam("id") int id) {
-		return Response.ok(
-			 customerServiceBean.getPersonById(id)).build();
+	@RolesAllowed( { ADMIN_ROLE, USER_ROLE })
+	@Path( RESOURCE_PATH_ID_PATH)
+	public Response getPersonById( @PathParam( RESOURCE_PATH_ID_ELEMENT) int id) {
+		LOG.debug( "try to retrieve specific person " + id);
+		Response response = null;
+		Person person = null;
+
+		if ( sc.isCallerInRole( ADMIN_ROLE)) {
+			person = service.getPersonId( id);
+			response = Response.status( person == null ? Status.NOT_FOUND : Status.OK).entity( person).build();
+		} else if ( sc.isCallerInRole( USER_ROLE)) {
+			WrappingCallerPrincipal wCallerPrincipal = (WrappingCallerPrincipal) sc.getCallerPrincipal();
+			SecurityUser sUser = (SecurityUser) wCallerPrincipal.getWrapped();
+			person = sUser.getPerson();
+			if ( person != null && person.getId() == id) {
+				response = Response.status( Status.OK).entity( person).build();
+			} else {
+				throw new ForbiddenException( "User trying to access resource it does not own (wrong userid)");
+			}
+		} else {
+			response = Response.status( Status.BAD_REQUEST).build();
+		}
+		return response;
 	}
 
 	@POST

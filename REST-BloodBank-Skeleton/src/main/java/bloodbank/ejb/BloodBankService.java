@@ -76,7 +76,15 @@ public class BloodBankService implements Serializable {
     }
 
     public Person getPersonId(int id) {
-    	return null;
+    	Person person = getPersonId(id);
+        if (person != null) {
+            em.refresh(person);
+            TypedQuery<SecurityUser> findUser = em
+                .createNamedQuery(USER_FOR_OWNING_PERSON_QUERY, SecurityUser.class)
+                .setParameter(PARAM1, person.getId());
+            return person;
+        }
+        return null;
     }
 
     @Transactional

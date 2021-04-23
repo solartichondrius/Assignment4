@@ -1,6 +1,7 @@
 package bloodbank.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -48,7 +49,7 @@ public abstract class BloodBank extends PojoBase implements Serializable {
 
 	@OneToMany( cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "bank")
 //	@JoinColumn( name = "bank_id", referencedColumnName = "bank_id")
-	private Set< BloodDonation> donations;
+	private List<BloodBank> donations;
 
 	@Transient
 	private boolean isPublic;
@@ -62,11 +63,11 @@ public abstract class BloodBank extends PojoBase implements Serializable {
 	}
 
 	@JsonIgnore
-	public Set< BloodDonation> getDonations() {
+	public List<BloodBank> getDonations() {
 		return donations;
 	}
 
-	public void setDonations( Set< BloodDonation> donations) {
+	public void setDonations( List<BloodBank> donations) {
 		this.donations = donations;
 	}
 
