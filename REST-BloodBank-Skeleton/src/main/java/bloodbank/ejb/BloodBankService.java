@@ -71,18 +71,18 @@ public class BloodBankService implements Serializable {
     protected EntityManager em;
     @Inject
     protected Pbkdf2PasswordHash pbAndjPasswordHash;
-
+    
     public List<Person> getAllPeople() {
     	return null;
     }
-
+    
 	public Person getPersonId(int id) {
 		Person person = getPersonId(id);
 		if(person != null) {
 			em.refresh(person);
 			em.flush();
 		}
-        return null;
+        return person;
     }
 
     @Transactional
