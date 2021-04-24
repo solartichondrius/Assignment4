@@ -5,7 +5,7 @@
  *
  * @date 2020 10
  *
- * (Modified) @author Student Name
+ * (Modified) @author Zachary Holmes 
  */
 package bloodbank;
 
@@ -46,6 +46,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
+import bloodbank.entity.Address;
+import bloodbank.entity.BloodBank;
 import bloodbank.entity.Person;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -96,5 +98,235 @@ public class TestBloodBankSystem {
         List<Person> emps = response.readEntity(new GenericType<List<Person>>(){});
         assertThat(emps, is(not(empty())));
         assertThat(emps, hasSize(1));
+    }
+    @Test
+    public void Test02_all_Bloodbank() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("bloodbank")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(200));
+            List<BloodBank> emps = response.readEntity(new GenericType<List<BloodBank>>(){});
+            assertThat(emps, is(not(empty())));
+            assertThat(emps, hasSize(1));
+    }
+    @Test
+    public void Test03_all_address() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("address")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(200));
+            List<Address> emps = response.readEntity(new GenericType<List<Address>>(){});
+            assertThat(emps, is(not(empty())));
+            assertThat(emps, hasSize(1));
+    }
+    @Test
+    public void Test04_create_bloodbank() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("bloodbank")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(200));
+            List<BloodBank> emps = response.readEntity(new GenericType<List<BloodBank>>(){});
+            assertThat(emps, is(not(empty())));
+            assertThat(emps, hasSize(1));
+    }
+    @Test
+    public void Test05_update_Bloodbank() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("bloodbank")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(200));
+            List<BloodBank> emps = response.readEntity(new GenericType<List<BloodBank>>(){});
+            assertThat(emps, is(not(empty())));
+            assertThat(emps, hasSize(1));
+    }
+    @Test
+    public void Test05_Delete_Bloodbank() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("bloodbank")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(200));
+            List<BloodBank> emps = response.readEntity(new GenericType<List<BloodBank>>(){});
+            assertThat(emps, is(empty()));
+    }
+    @Test
+    public void Test06_Create_Person() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("person")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(200));
+            List<Person> emps = response.readEntity(new GenericType<List<Person>>(){});
+            assertThat(emps, is(not(empty())));
+            assertThat(emps, hasSize(1));
+    }
+    @Test
+    public void Test07_update_Person() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("person")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(200));
+            List<Person> emps = response.readEntity(new GenericType<List<Person>>(){});
+            assertThat(emps, is(not(empty())));
+            assertThat(emps, hasSize(1));
+    }
+    @Test
+    public void Test08_Delete_Person() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("person")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(200));
+            List<BloodBank> emps = response.readEntity(new GenericType<List<BloodBank>>(){});
+            assertThat(emps, is(empty()));
+    }
+    @Test
+    public void Test09_create_Address() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("address")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(200));
+            List<Address> emps = response.readEntity(new GenericType<List<Address>>(){});
+            assertThat(emps, is(not(empty())));
+            assertThat(emps, hasSize(1));
+    }
+    @Test
+    public void Test10_update_Address() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("address")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(200));
+            List<Address> emps = response.readEntity(new GenericType<List<Address>>(){});
+            assertThat(emps, is(not(empty())));
+            assertThat(emps, hasSize(1));
+    }
+    @Test
+    public void Test11_delete_Address() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("address")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(200));
+            List<Address> emps = response.readEntity(new GenericType<List<Address>>(){});
+            assertThat(emps, is(empty()));
+    }
+    @Test
+    public void Test12_update_person_userRole() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                .register(userAuth)
+                //.register(adminAuth)
+                .path("person")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(200));
+            List<Person> emps = response.readEntity(new GenericType<List<Person>>(){});
+            assertThat(emps, is(not(empty())));
+            assertThat(emps, hasSize(1));
+    }
+    @Test
+    public void Test13_Delete_person_userRole() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                .register(userAuth)
+                //.register(adminAuth)
+                .path("person")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(200));
+            List<BloodBank> emps = response.readEntity(new GenericType<List<BloodBank>>(){});
+            assertThat(emps, is(empty()));
+    }
+    @Test
+    public void Test14_get_person_by_id() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("id")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(1));
+            List<Person> emps = response.readEntity(new GenericType<List<Person>>(){});
+            assertThat(emps, is(not(empty())));
+            assertThat(emps, hasSize(1));
+    }
+    @Test
+    public void Test15_get_person_by_id_userRole() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                .register(userAuth)
+                //.register(adminAuth)
+                .path("id")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(1));
+            List<Person> emps = response.readEntity(new GenericType<List<Person>>(){});
+            assertThat(emps, is(not(empty())));
+            assertThat(emps, hasSize(1));
+    }
+    @Test
+    public void Test16_get_user_by_name() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("username")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(1));
+            List<Person> emps = response.readEntity(new GenericType<List<Person>>(){});
+            assertThat(emps, is(not(empty())));
+            assertThat(emps, hasSize(1));
+    }
+    @Test
+    public void Test17_get_role_by_username() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("username")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(1));
+            List<Person> emps = response.readEntity(new GenericType<List<Person>>(){});
+            assertThat(emps, is(not(empty())));
+            assertThat(emps, hasSize(1));
+    }
+    @Test
+    public void Test18_get_all_donations() throws JsonMappingException, JsonProcessingException {
+    	Response response = webTarget
+                //.register(userAuth)
+                .register(adminAuth)
+                .path("Bloodbank")
+                .request()
+                .get();
+            assertThat(response.getStatus(), is(1));
+            List<BloodBank> emps = response.readEntity(new GenericType<List<BloodBank>>(){});
+            assertThat(emps, is(not(empty())));
+            assertThat(emps, hasSize(1));
     }
 }
